@@ -14,4 +14,7 @@ webarebears1 = pd.merge(math,electronics, how = 'left', on = 'Student')
 webarebears2 = pd.merge(webarebears1, geas, how = 'left', on = 'Student')
 webarebears = pd.merge(webarebears2, esat, how = 'left', on = 'Student')
 
-print(webarebears)
+long1 = pd.melt(webarebears, id_vars = 'Student', value_vars = ['Math', 'Electronics','GEAS', 'ESAT'])
+long2 = long1.rename(columns = {'variable':'Subject', 'value':'Grades'})
+long3 = long2.sort_values('Student').reset_index()
+longformat = long3.drop(columns = 'index')
